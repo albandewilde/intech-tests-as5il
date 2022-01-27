@@ -18,7 +18,7 @@ Tâches à effectuer :
 - [x] Implémenter les tests unitaires de la couche service (avec Mock si nécessaire)
 - [x] Implémenter les tests d'intégration de la couche service avec la couche repositories
 - [ ] Complèter le code de la méthode checkEcritureComptableUnit et écrire le test correspondant
-- [?] Implémenter la méthode addReference en appliquant la méthodologie TDD (commit du/des tests puis commit du code)
+- [x] Implémenter la méthode addReference en appliquant la méthodologie TDD (commit du/des tests puis commit du code)
 - [x] Mettre en place une configuration pour séparer les données de production et les données de tests
 - [x] Ajouter le plugin Jacoco pour obtenir le coverage
 - [ ] Implémenter un controller REST qui permettra d'ajouter, de modifier et de supprimer une écriture comptable et écrire les tests fonctionnels associés

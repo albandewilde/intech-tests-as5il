@@ -3,7 +3,6 @@ package com.intech.comptabilite.service.businessmanager;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -23,6 +22,7 @@ import com.intech.comptabilite.model.CompteComptable;
 import com.intech.comptabilite.model.EcritureComptable;
 import com.intech.comptabilite.model.JournalComptable;
 import com.intech.comptabilite.model.LigneEcritureComptable;
+import com.intech.comptabilite.model.SequenceEcritureComptable;
 import com.intech.comptabilite.service.entityservice.CompteComptableService;
 import com.intech.comptabilite.service.entityservice.EcritureComptableService;
 import com.intech.comptabilite.service.entityservice.JournalComptableService;
@@ -72,16 +72,26 @@ public class ComptabiliteManagerImpl implements ComptabiliteManager {
     // TODO à implémenter et à tester
     @Override
     public synchronized void addReference(EcritureComptable pEcritureComptable) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(pEcritureComptable.getDate());
     	String year = new SimpleDateFormat("yyyy").format(pEcritureComptable.getDate());
     	String codeJournal = pEcritureComptable.getJournal().getCode();
     	
+    	int id = getLatestWritingNumber(pEcritureComptable);
+    	
     	String ref = String.format(
-    		"%s-%s/00001",
+    		"%s-%s/%05d",
     		codeJournal,
-    		year
+    		year,
+    		id+1
     	);
     	
     	pEcritureComptable.setReference(ref);
+    	
+    	var sec = new SequenceEcritureComptable();
+    	sec.setAnnee(c.get(Calendar.YEAR));
+    	sec.setDerniereValeur(id+1);
+    	sequenceEcritureComptableService.upsert(sec);
         // Bien se réferer à la JavaDoc de cette méthode !
         /* Le principe :
                 1.  Remonter depuis la persitance la dernière valeur de la séquence du journal pour l'année de l'écriture
@@ -213,5 +223,20 @@ public class ComptabiliteManagerImpl implements ComptabiliteManager {
         ValidatorFactory vFactory = vConfiguration.buildValidatorFactory();
         Validator vValidator = vFactory.getValidator();
         return vValidator;
+    }
+    
+    private int getLatestWritingNumber(EcritureComptable ec) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(ec.getDate());
+    	int last;
+		try {
+			last = sequenceEcritureComptableService.getDernierValeurByCodeAndAnnee(
+			        	ec.getJournal().getCode(),
+						c.get(Calendar.YEAR)
+			 );
+		} catch (NotFoundException e) {
+			last = 0;
+		}
+    	return last;
     }
 }
