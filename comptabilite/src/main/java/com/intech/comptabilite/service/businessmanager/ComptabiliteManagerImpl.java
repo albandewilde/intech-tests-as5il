@@ -1,6 +1,7 @@
 package com.intech.comptabilite.service.businessmanager;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,6 @@ import com.intech.comptabilite.model.CompteComptable;
 import com.intech.comptabilite.model.EcritureComptable;
 import com.intech.comptabilite.model.JournalComptable;
 import com.intech.comptabilite.model.LigneEcritureComptable;
-import com.intech.comptabilite.model.SequenceEcritureComptable;
 import com.intech.comptabilite.service.entityservice.CompteComptableService;
 import com.intech.comptabilite.service.entityservice.EcritureComptableService;
 import com.intech.comptabilite.service.entityservice.JournalComptableService;
@@ -72,6 +72,16 @@ public class ComptabiliteManagerImpl implements ComptabiliteManager {
     // TODO à implémenter et à tester
     @Override
     public synchronized void addReference(EcritureComptable pEcritureComptable) {
+    	String year = new SimpleDateFormat("yyyy").format(pEcritureComptable.getDate());
+    	String codeJournal = pEcritureComptable.getJournal().getCode();
+    	
+    	String ref = String.format(
+    		"%s-%s/00001",
+    		codeJournal,
+    		year
+    	);
+    	
+    	pEcritureComptable.setReference(ref);
         // Bien se réferer à la JavaDoc de cette méthode !
         /* Le principe :
                 1.  Remonter depuis la persitance la dernière valeur de la séquence du journal pour l'année de l'écriture
