@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.intech.comptabilite.model.CompteComptable;
 import com.intech.comptabilite.model.EcritureComptable;
@@ -14,6 +15,7 @@ import com.intech.comptabilite.model.LigneEcritureComptable;
 import com.intech.comptabilite.service.exceptions.FunctionalException;
 
 @SpringBootTest
+@ActiveProfiles("test")
 public class ComptabiliteManagerImplTest {
 
 	@Autowired
