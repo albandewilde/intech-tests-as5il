@@ -41,5 +41,4 @@ public class JournalComptable {
     public void setLibelle(String pLibelle) {
         libelle = pLibelle;
     }
-
 }

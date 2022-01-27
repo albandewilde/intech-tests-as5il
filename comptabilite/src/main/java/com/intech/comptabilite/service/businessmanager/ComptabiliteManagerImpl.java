@@ -2,6 +2,7 @@ package com.intech.comptabilite.service.businessmanager;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -139,6 +140,9 @@ public class ComptabiliteManagerImpl implements ComptabiliteManager {
 
         // TODO ===== RG_Compta_5 : Format et contenu de la référence
         // vérifier que l'année dans la référence correspond bien à la date de l'écriture, idem pour le code journal...
+        //Date refDate = pEcritureComptable.getDate();
+        //JournalComptable journal = pEcritureComptable.getJournal();
+        //sequenceEcritureComptableService.getDernierValeurByCodeAndAnnee(journal.getCode(), refDate.getYear());        
     }
 
 

@@ -70,21 +70,20 @@ public class EcritureComptableService {
 	public BigDecimal getTotalCredit(EcritureComptable ecriture) {
 		BigDecimal vRetour = BigDecimal.ZERO;
 		for (LigneEcritureComptable vLigneEcritureComptable : ecriture.getListLigneEcriture()) {
-			if (vLigneEcritureComptable.getDebit() != null) {
-				vRetour = vRetour.add(vLigneEcritureComptable.getDebit());
+			if (vLigneEcritureComptable.getCredit() != null) {
+				vRetour = vRetour.add(vLigneEcritureComptable.getCredit());
 			}
 		}
 		return vRetour;
 	}
 
 	/**
-	 * Renvoie si l'écriture est équilibrée (TotalDebit = TotalCrédit)
+	 * Renvoie True si l'écriture est équilibrée (TotalDebit = TotalCrédit)
 	 * 
 	 * @return boolean
 	 */
 	public boolean isEquilibree(EcritureComptable ecriture) {
-		boolean vRetour = this.getTotalDebit(ecriture).equals(getTotalCredit(ecriture));
-		return vRetour;
+		return getTotalDebit(ecriture).compareTo(getTotalCredit(ecriture)) == 0;
 	}
 
 }
