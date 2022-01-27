@@ -15,7 +15,7 @@ Règles de gestion :
 Tâches à effectuer :
 
 - [x] Corriger le code correspondant aux tests existants qui échouent (un commit par erreur dans le code detectée)
-- [ ] Implémenter les tests unitaires de la couche service (avec Mock si nécessaire)
+- [x] Implémenter les tests unitaires de la couche service (avec Mock si nécessaire)
 - [ ] Implémenter les tests d'intégration de la couche service avec la couche repositories
 - [ ] Complèter le code de la méthode checkEcritureComptableUnit et écrire le test correspondant
 - [ ] Implémenter la méthode addReference en appliquant la méthodologie TDD (commit du/des tests puis commit du code)
