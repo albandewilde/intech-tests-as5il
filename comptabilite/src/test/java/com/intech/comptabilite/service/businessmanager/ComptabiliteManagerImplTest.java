@@ -106,10 +106,22 @@ public class ComptabiliteManagerImplTest {
         cmi.addReference(ec);
         
         Assertions.assertEquals("BC-2006/00001", ec.getReference());
-        
-        
-        
-        
     }
-
+    
+    @Test
+    public void testAddAnOtherReference() throws ParseException {
+    	String dateInput = "2007";
+    	var parser = new SimpleDateFormat("yyyy");
+    	Date date = parser.parse(dateInput);
+    	
+    	var ec = new EcritureComptable();
+    	ec.setDate(date);
+    	ec.setJournal(new JournalComptable("HA", "help me"));
+    	
+    	var cmi = new ComptabiliteManagerImpl();
+    	
+    	cmi.addReference(ec);
+    	
+    	Assertions.assertEquals("HA-2007/00219", ec.getReference());
+    }
 }
