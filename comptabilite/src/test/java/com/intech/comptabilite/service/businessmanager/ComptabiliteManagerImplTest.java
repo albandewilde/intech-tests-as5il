@@ -1,6 +1,8 @@
 package com.intech.comptabilite.service.businessmanager;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -87,6 +89,27 @@ public class ComptabiliteManagerImplTest {
         		}
         );
                 
+    }
+    
+    @Test
+    public void testAddFirstReference() throws ParseException {
+    	String dateInput = "2006";
+    	var parser = new SimpleDateFormat("yyyy");
+    	Date date = parser.parse(dateInput);
+
+    	var ec = new EcritureComptable();
+        ec.setDate(date);
+        ec.setJournal(new JournalComptable("BC", "yes"));
+        
+        var cmi = new ComptabiliteManagerImpl();
+        
+        cmi.addReference(ec);
+        
+        Assertions.assertEquals("BC-2006/00001", ec.getReference());
+        
+        
+        
+        
     }
 
 }
