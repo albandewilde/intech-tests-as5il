@@ -17,11 +17,6 @@
 --		CHAR(1)	VARCHAR					
 	INSERT INTO compte_comptable (numero, libelle) VALUES (	401,	'Fournisseurs'	);				
 	INSERT INTO compte_comptable (numero, libelle) VALUES (	411,	'Clients'	);				
-	INSERT INTO compte_comptable (numero, libelle) VALUES (	4456,	'Taxes sur le chiffre d''affaires déductibles'	);				
-	INSERT INTO compte_comptable (numero, libelle) VALUES (	4457,	'Taxes sur le chiffre d''affaires collectées par l''entreprise'	);				
-	INSERT INTO compte_comptable (numero, libelle) VALUES (	512,	'Banque'	);				
-	INSERT INTO compte_comptable (numero, libelle) VALUES (	606,	'Achats non stockés de matières et fournitures'	);				
-	INSERT INTO compte_comptable (numero, libelle) VALUES (	706,	'Prestations de services'	);				
 								
 								
 								
